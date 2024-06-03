@@ -99,8 +99,26 @@ aws s3 cp ./regional-s3-assets s3://$DEPLOY_BUCKET-$AWS_REGION/$SOLUTION_NAME/$V
 
 
 ## Collection of operational metrics
-This solution collects anonymous operational metrics to help AWS improve the quality and features of the solution. For more information, including how to disable this capability, please see the [implementation guide](https://docs.aws.amazon.com/solutions/latest/data-lake-solution/appendix-d.html).
+This solution collects anonymous operational metrics to help AWS improve the quality and features of the solution. 
+This solution includes an option to send anonymous operational metrics to AWS. We use this data to better understand how customers use this solution to improve the services and products that we offer. When enabled, the following information is collected and sent to AWS:   
+- Solution ID: The AWS solution identifier  
+- Unique ID (UUID): Randomly generated, unique identifier for each data lake solution deployment  
+- Timestamp: Data-collection timestamp  
+- Cluster Size: Size of the Amazon Elasticsearch cluster the solution will deploy
+-  Note that AWS will own the data gathered via this survey. Data collection will be subject to the [AWS Privacy Policy](https://aws.amazon.com/privacy/). 
 
+To opt out of this feature, modify the AWS CloudFormation template mapping section as follows: 
+```
+Solution: 
+  Data: 
+    SendAnonymousUsageData: "Yes"
+```
+to 
+```
+Solution: 
+  Data: 
+    SendAnonymousUsageData: "No"
+```
 
 ***
 
